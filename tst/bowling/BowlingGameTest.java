@@ -24,6 +24,18 @@ public class BowlingGameTest {
 		int expected	= 13;
 		assertThat(actual,is(expected));
 	}
+	@Test
+	public void フレーム1が5_5_フレーム2が5_1_残りガターのテストで21() {
+		sut.shot(5);
+		sut.shot(5);
+		sut.shot(5);
+		sut.shot(1);
+		sameShots(0,16);
+		int actual		= sut.getScore();
+		int expected	= 21;
+		assertThat(actual,is(expected));
+	}
+
 
 
 	@DataPoints
