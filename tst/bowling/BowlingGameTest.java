@@ -11,16 +11,15 @@ import org.junit.runner.RunWith;
 
 @RunWith(Theories.class)
 public class BowlingGameTest {
+	public 	BowlingGame sut = new BowlingGame();
+
 	@Test
 	public void フレーム1が5_5_フレーム2が1_1_残りガターのテストで13() {
-		BowlingGame sut = new BowlingGame();
 		sut.shot(5);
 		sut.shot(5);
 		sut.shot(1);
 		sut.shot(1);
-		for (int i = 0; i < 16; i++) {
-			sut.shot(0);
-		}
+		sameShots(0,16);
 		int actual		= sut.getScore();
 		int expected	= 13;
 		assertThat(actual,is(expected));
@@ -47,13 +46,15 @@ public class BowlingGameTest {
 
 	@Theory
 	public void 全フレーム同じ投球の場合の組み合わせテスト(Fixture param) {
-		BowlingGame sut = new BowlingGame();
-		for (int i = 0; i < 20; i++) {
-			sut.shot(param.pins);
-		}
+		sameShots(param.pins,20);
 		int actual		= sut.getScore();
 		int expected	= param.expected;
 		assertThat(param.msg,actual,is(expected));
+	}
+	private void sameShots(int pins,int times) {
+		for (int i = 0; i < times; i++) {
+			sut.shot(pins);
+		}
 	}
 
 }
