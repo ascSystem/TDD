@@ -20,6 +20,9 @@ public class BowlingGameTest {
 					new int[]{5,5,1,1},0,16,13),
 			new Fixture("フレーム1が5_5_フレーム2が5_1_残りガターのテストで21",
 					new int[]{5,5,5,1},0,16,21),
+			new Fixture("フレーム1が10_フレーム2が1_0_残りガターのテストで12",
+					new int[]{10,1,0},0,16,12),
+
 	};
 
 	public static class Fixture{
