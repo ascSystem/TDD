@@ -5,7 +5,7 @@ public class BowlingGame {
 	private int oldPins;
 	private boolean spairFlag;
 	private boolean flameEnd = false;
-	private boolean strikeFlag;
+	private int strikeFlag;
 
 
 	public void shot(int pins) {
@@ -14,7 +14,7 @@ public class BowlingGame {
 		addStrikeBonus(pins);
 		judgeSpare(pins);
 		judgeStrike(pins);
-		this.flameEnd = !(this.flameEnd);
+		judgeFlameEnd();
 	}
 	public int getScore() {
 		return this.score;
@@ -26,8 +26,9 @@ public class BowlingGame {
 		}
 	}
 	private void addStrikeBonus(int pins) {
-		if(this.strikeFlag){
+		if(this.strikeFlag > 0){
 			this.score = this.score + pins;
+			strikeFlag--;
 		}
 	}
 	private void judgeSpare(int pins){
@@ -35,8 +36,15 @@ public class BowlingGame {
 		this.oldPins = pins;
 	}
 	private void judgeStrike(int pins){
-		this.strikeFlag = (pins == 10);
+		if((pins == 10)&&(!(this.flameEnd))){
+			this.strikeFlag = 2;
+		}
 	}
+	private void judgeFlameEnd() {
+		this.flameEnd = !(this.flameEnd);
+		if(this.strikeFlag == 2) this.flameEnd = false;
+	}
+
 
 
 }
