@@ -35,20 +35,19 @@ public class BowlingGame {
 		beforeFrameAddBonus(pins,2);
 	}
 
-
 	private Frame lastFrame() {
 		return this.frames.get(this.frames.size()-1);
 	}
-	public int beforeFrameNeedBonus(int frameCounts) {
+	public boolean beforeFrameNeedBonus(int frameCounts) {
 		if(beforeFrameIndex(frameCounts) >= 0)
-			return this.frames.get(beforeFrameIndex(frameCounts)).needBonus();
-		return 0;
+			return true;
+		return false;
 	}
 	private int beforeFrameIndex(int frameCounts){
 		return this.frames.size() - frameCounts -1;
 	}
 	private void beforeFrameAddBonus(int pins,int frameCounts){
-		if(beforeFrameNeedBonus(frameCounts)>0){
+		if(beforeFrameNeedBonus(frameCounts)){
 			this.frames.get(beforeFrameIndex(frameCounts)).addBonus(pins);
 		}
 	}

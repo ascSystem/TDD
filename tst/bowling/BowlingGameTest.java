@@ -85,8 +85,8 @@ public class BowlingGameTest {
 
 	@Test
 	public void スペア前後のneedBonusを確認(){
-		int actual = sut.beforeFrameNeedBonus(1);
-		int expected = 0;
+		boolean actual = sut.beforeFrameNeedBonus(1);
+		boolean expected = false;
 
 		assertThat("0フレーム目",actual,is(expected));
 
@@ -94,14 +94,14 @@ public class BowlingGameTest {
 		sut.shot(5);
 
 		actual = sut.beforeFrameNeedBonus(1);
-		expected = 1;
+		expected = true;
 
 		assertThat("1フレームでスペア直後",actual,is(expected));
 
 		sut.addBonus(5);
 
 		actual = sut.beforeFrameNeedBonus(1);
-		expected = 0;
+		expected = true;
 
 		assertThat("ボーナス加算直後",actual,is(expected));
 

@@ -67,34 +67,5 @@ public class FrameTest {
 
 		assertThat(actual,is(expected));
 	}
-	@Test
-	public void スペア時にneedBonusが1のテスト(){
-		sut.shot(3);
-		sut.shot(7);
-
-		int actual = sut.needBonus();
-		int expected = 1;
-		assertThat(actual,is(expected));
-	}
-	@Test
-	public void ストライク時にneedBonusが2のテスト(){
-		sut.shot(10);
-
-		int actual = sut.needBonus();
-		int expected = 2;
-		assertThat(actual,is(expected));
-	}
-
-	@Test
-	public void ボーナス加算時にneedBonusが減っているかのテスト(){
-		sut.shot(3);
-		sut.shot(7);
-		sut.addBonus(5);
-
-		int actual = sut.needBonus();
-		int expected = 0;
-		assertThat(actual,is(expected));
-	}
-
 
 }

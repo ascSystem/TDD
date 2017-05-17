@@ -37,13 +37,11 @@ public class Frame {
 		return (this.firstPins  == 10);
 	}
 
-	public int needBonus() {
-		return this.needBonus;
-	}
-
 	public void addBonus(int pins) {
-		this.bonus = this.bonus + pins;
-		this.needBonus--;
+		if(this.needBonus > 0){
+			this.bonus = this.bonus + pins;
+			this.needBonus--;
+		}
 	}
 
 }
