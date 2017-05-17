@@ -3,6 +3,7 @@ package bowling;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
+import org.junit.Test;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
@@ -59,6 +60,54 @@ public class BowlingGameTest {
 		int expected	= param.expected;
 		assertThat(param.msg,actual,is(expected));
 	}
+
+	@Test
+	public void 全投球ガターで第1フレームの得点0のテスト(){
+		sameShots(0,20);
+
+		int actual = sut.frameScore(1);
+		int expected = 0;
+
+		assertThat(actual,is(expected));
+
+	}
+
+	@Test
+	public void 全投球1で第1フレームの得点2のテスト(){
+		sameShots(1,20);
+
+		int actual = sut.frameScore(1);
+		int expected = 2;
+
+		assertThat(actual,is(expected));
+
+	}
+
+	@Test
+	public void スペア前後のneedBonusを確認(){
+		int actual = sut.beforeFrameNeedBonus(1);
+		int expected = 0;
+
+		assertThat("0フレーム目",actual,is(expected));
+
+		sut.shot(5);
+		sut.shot(5);
+
+		actual = sut.beforeFrameNeedBonus(1);
+		expected = 1;
+
+		assertThat("1フレームでスペア直後",actual,is(expected));
+
+		sut.addBonus(5);
+
+		actual = sut.beforeFrameNeedBonus(1);
+		expected = 0;
+
+		assertThat("ボーナス加算直後",actual,is(expected));
+
+
+	}
+
 	private void sameShots(int pins,int times) {
 		for (int i = 0; i < times; i++) {
 			sut.shot(pins);
