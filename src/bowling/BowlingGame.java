@@ -55,7 +55,4 @@ public class BowlingGame {
 		this.now2ndShot = !(this.now2ndShot);
 		if((this.strikeFlag == 2)||(this.doubleFlag == 2)) this.now2ndShot = false;
 	}
-
-
-
 }
